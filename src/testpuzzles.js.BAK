@@ -1,0 +1,26 @@
+[
+    {
+        id: 1,
+        hiddenWord: 'peanut',
+        guessesTaken: 3,
+        guessedLetters: ['a','b','c']
+      },
+      {
+        id: 2,
+        hiddenWord: 'Hypokinesis',
+        guessesTaken: 0,
+        guessedLetters: []
+      },
+      {
+        id: 4,
+        hiddenWord: 'angularsux',
+        guessesTaken: 2,
+        guessedLetters: ['a','e']
+      },
+      {
+        id: 7,
+        hiddenWord: 'koshtrabelorn',
+        guessesTaken: 7,
+        guessedLetters: ['a','b','c','d','e','f','g']
+      }
+]

@@ -3,8 +3,8 @@ import PuzzleCard from './PuzzleCard';
 
 const PuzzleGrid = ({props}) => {
     const cardComponent = props.map((data, i) => {
-        return <PuzzleCard key={props[i].id} id={props[i].id} hiddenWord={props[i].hiddenWord} guessesTaken={props[i].guessesTaken}
-        guessedLetters={props[i].guessedLetters} />
+        return <PuzzleCard key={data.id} id={data.id} hiddenWord={data.hiddenWord} 
+            guessesTaken={data.guessesTaken} guessedLetters={data.guessedLetters} />
     });
 
     return (

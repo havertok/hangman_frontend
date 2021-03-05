@@ -1,48 +1,34 @@
 import React, {useEffect, useState} from 'react';
 import PuzzleGrid from './components/PuzzleGrid.js';
-
+import { sendGetAllRequest } from './services/httpServ.js';
 import './App.css';
 
 function App() {
-  /*constructor() {
-    super();
-    this.state = {
-      puzzles: [],
-    };
-  }*/
 
-  //React state hook
+  const [isLoading, setLoading] = useState(true); //data needs to be fetched before render
   const [puzzles, setPuzzles] = useState([]);
 
-  //The function that will fetch from, for now, a local Json file
-  const getData=()=>{
-    fetch('testpuzzles.json', {headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    }})
-    .then(function(response){
-      console.log(response)
-      return response.json();
-    })
-    .then(function(jsonResp){
-      console.log(jsonResp);
-      setPuzzles(jsonResp)
-    });
+  const testUrl = 'testpuzzles.json';
+  const prodUrl = 'localhost:8080/puzzles'
+
+  useEffect(() => {
+    //I just wanted to play the loading animation for a bit, hence the timeout
+    setTimeout (() => {
+      sendGetAllRequest(testUrl).then((resp) => {
+        setPuzzles(resp);
+        setLoading(false);
+      });
+    }, 2000)
+  }, []);
+
+  if (isLoading || !puzzles){
+    return (
+      <div>
+        <h2>Loading...</h2>
+        <img style={{animation: `load-spin 3s linear infinite`}} src={'Cosmati_Loading_BIG.png'} alt="img"/>
+      </div>
+    )
   }
-
-  //
-  useEffect(()=>{
-    getData()
-  },[])
-
-  /*componentDidMount() {
-    this.setState({ puzzles : testpuzzles});
-    console.log(this.state.puzzles.toString());
-  }*/
-
-  //setPuzzles(testpuzzles =>  testpuzzles);
-
-  //const testpuzzles = testpuzzles;
 
   return (
     <div>

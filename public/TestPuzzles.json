@@ -1,0 +1,8 @@
+[{"hiddenWord":"testword","maxMisses":6,"guessesTaken":0,"guessedLetters":[],"id":1,"solved":false},
+    {"hiddenWord":"testwordtwo","maxMisses":6,"guessesTaken":3,"guessedLetters":["c","a","r"],"id":2,"solved":false},
+    {"hiddenWord":"testwordthree","maxMisses":6,"guessesTaken":4,"guessedLetters":["r","t","s","l"],"id":3,"solved":false},
+    {"hiddenWord":"testwordfour","maxMisses":6,"guessesTaken":2,"guessedLetters":["t","q","b"],"id":4,"solved":false},
+    {"hiddenWord":"testwordfive","maxMisses":6,"guessesTaken":1,"guessedLetters":["e"],"id":5,"solved":false},
+    {"hiddenWord":"testwordsix","maxMisses":6,"guessesTaken":3,"guessedLetters":["c","a","r"],"id":6,"solved":false},
+    {"hiddenWord":"testwordseven","maxMisses":6,"guessesTaken":0,"guessedLetters":[],"id":7,"solved":true},
+    {"hiddenWord":"testwordeight","maxMisses":6,"guessesTaken":5,"guessedLetters":["c","a","r"],"id":8,"solved":false}]

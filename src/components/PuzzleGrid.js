@@ -8,7 +8,7 @@ const PuzzleGrid = ({props}) => {
     });
 
     return (
-        <div className='flex grow two three-600 six-1200'>
+        <div className='Puzzles-Grid flex two three-600 six-1200'>
             {cardComponent}
         </div>
     );

@@ -1,11 +1,14 @@
 import React from 'react';
+import HangmanDisplay from './HangmanDisplay';
 
 //React will warn about guessedLetters not having a key; you need to explicitly use React.Fragment to add keys to fragments
 //We don't really need a key for the guessed letters (not here anyway, this array won't be modified) but why not?
+//Also NO state is required here, We DO NOT use PuzzleCard to actually play a game, that is SinglePuzzle
 const PuzzleCard = ({ id, hiddenWord, guessesTaken, guessedLetters }) => {
+
   return (
     <div className = 'card pseudo button'>
-        <div><img src='The_fool.jpeg'></img></div>
+        <HangmanDisplay guessesTaken={guessesTaken} />
       <h1>ID: {id} </h1>
       <div>
         <h2>Word: {hiddenWord}</h2>

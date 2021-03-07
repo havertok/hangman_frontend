@@ -36,6 +36,10 @@
   padding-left: 10px;
 }
 
+.Hangman-Display{
+  font-family: monospace, monospace;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

@@ -13,6 +13,8 @@ function App() {
   const testUrl = 'testpuzzles.json';
   const prodUrl = 'localhost:8080/puzzles'
 
+  const gridContStyle = {paddingLeft: 10, justifyItems: 'center', alignItems: 'center',}
+
   useEffect(() => {
     //I just wanted to play the loading animation for a bit, hence the timeout
     setTimeout (() => {
@@ -42,7 +44,7 @@ function App() {
   return (
     <div>
       <Navbar buttonFunct={navClick} navVal = {navState}/>
-      <div className ='flex' style={{'padding-left': '10px','justify-items': 'center', 'align-items': 'center'}}>
+      <div className ='flex' style={gridContStyle}>
         <PuzzleGrid props={puzzles}/>
       </div>
     </div>

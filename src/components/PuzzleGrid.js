@@ -1,10 +1,11 @@
 import React from 'react';
 import PuzzleCard from './PuzzleCard';
 
-const PuzzleGrid = ({props}) => {
+const PuzzleGrid = ({props, selectFunct}) => {
     const cardComponent = props.map((data, i) => {
         return <PuzzleCard key={data.id} id={data.id} hiddenWord={data.hiddenWord} 
-            guessesTaken={data.guessesTaken} guessedLetters={data.guessedLetters} />
+            guessesTaken={data.guessesTaken} guessedLetters={data.guessedLetters} 
+            selectFunct={selectFunct}/>
     });
 
     return (

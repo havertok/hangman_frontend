@@ -1,9 +1,30 @@
 import React from 'react';
 
-function HangmanDisplay({guessesTaken}) {
+function HangmanDisplay({guessesTaken, guessedLetters, hiddenWord}) {
+
+    console.log('hiddenWord:' + hiddenWord);
+    console.log(guessedLetters);
 
     const hangmanStyle = {
-       overFlow: 'auto', background: '#000', width: '98%', color: '#00ff00'
+       overFlow: 'auto', background: '#000', width: '98%', color: '#00ff00', alignItems: 'center'
+    }
+
+    function getLetters(guessedLetters){
+        let lettersArr = []; 
+        let wordArr = hiddenWord.split('');
+
+        wordArr.forEach(letter =>{
+            if(guessedLetters.toString().includes(letter)){
+                lettersArr.push(letter);
+            } else {
+                lettersArr.push('_');
+            }
+        });
+        return (
+            <div className='flex center'>
+                {lettersArr.map(letter => <> {letter} </>)}
+            </div>
+        );
     }
     
     function getHangman(num){
@@ -20,7 +41,7 @@ function HangmanDisplay({guessesTaken}) {
               |      
               |
         ______|_______
-       |            | `}</pre>;
+        |            | `}</pre>;
             case 1:
                 return <pre style={hangmanStyle}>{`
                _______
@@ -104,8 +125,9 @@ function HangmanDisplay({guessesTaken}) {
     }
 
     return (
-        <div>
+        <div style={hangmanStyle}>
             {getHangman(guessesTaken)}
+            {getLetters(guessedLetters)}
         </div>
     )
 }

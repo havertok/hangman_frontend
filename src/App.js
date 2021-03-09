@@ -10,7 +10,7 @@ function App() {
   const [isLoading, setLoading] = useState(true); //data needs to be fetched before render
   const [puzzles, setPuzzles] = useState([]);
   const [navState, setNavState] = useState('Home');//The default landing page is a grid of puzzles (i.e. home)
-  const [selectedPuzzle, setSelectedPuzzle] = useState(-1);// no puzzle will have neg ID
+  const [selectedPuzzle, setSelectedPuzzle] = useState(null);// no puzzle will have neg ID
 
   const testUrl = 'testpuzzles.json';
   const prodUrl = 'localhost:8080/puzzles'
@@ -31,20 +31,22 @@ function App() {
     setNavState(value); //returns navbuttons values: Home, New, Login
   };
 
-  function puzzleSelect(value){
-    setSelectedPuzzle(value);
+  //Gets the puzzle id and then uses getPuzz below to set actual puzzle object
+  function puzzleIdSelect(value){
+    getPuzzleFromState(value);
   };
 
   //Get's local copy of puzzle object
   function getPuzzleFromState(value){
+    if(value < 0){
+      setSelectedPuzzle(null);
+      return null;
+    }
     puzzles.forEach(puzz => {
       if(puzz.id == value){
-        console.log('id value: '+ value);
-        console.log(puzz)
-        return puzz;
+        setSelectedPuzzle(puzz);
       }
     });
-    return null;
   }
 
   if (isLoading || !puzzles){
@@ -62,9 +64,9 @@ function App() {
   return (
     <div>
       <Navbar buttonFunct={navClick} navVal = {navState}/>
-      <SinglePuzzle selectFunc={puzzleSelect} puzzle={getPuzzleFromState(selectedPuzzle)}/>
+      <SinglePuzzle selectFunct={puzzleIdSelect} puzzle={selectedPuzzle}/>
       <div className ='flex' style={gridContStyle}>
-        <PuzzleGrid selectFunct={puzzleSelect} props={puzzles}/>
+        <PuzzleGrid selectFunct={puzzleIdSelect} props={puzzles}/>
       </div>
     </div>
   );

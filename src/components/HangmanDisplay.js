@@ -2,9 +2,6 @@ import React from 'react';
 
 function HangmanDisplay({guessesTaken, guessedLetters, hiddenWord}) {
 
-    console.log('hiddenWord:' + hiddenWord);
-    console.log(guessedLetters);
-
     const hangmanStyle = {
        overFlow: 'auto', background: '#000', width: '98%', color: '#00ff00', alignItems: 'center'
     }

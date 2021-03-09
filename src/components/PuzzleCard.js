@@ -5,7 +5,6 @@ import HangmanDisplay from './HangmanDisplay';
 //We don't really need a key for the guessed letters (not here anyway, this array won't be modified) but why not?
 //Also NO state is required here, We DO NOT use PuzzleCard to actually play a game, that is SinglePuzzle
 const PuzzleCard = ({ id, hiddenWord, guessesTaken, guessedLetters, selectFunct }) => {
-  console.log('PuzzleCard: ' + hiddenWord);
 
   return (
     <div className = 'card pseudo button' onClick={e => selectFunct(id)} >

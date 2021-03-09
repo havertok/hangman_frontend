@@ -9,7 +9,7 @@ const PuzzleGrid = ({props, selectFunct}) => {
     });
 
     return (
-        <div className='Puzzles-Grid flex two three-600 six-1200'>
+        <div className='Puzzles-Grid flex grow two three-600'>
             {cardComponent}
         </div>
     );

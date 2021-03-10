@@ -19,7 +19,8 @@ function HangmanDisplay({guessesTaken, guessedLetters, hiddenWord}) {
         });
         return (
             <div className='flex center'>
-                {lettersArr.map(letter => <> {letter} </>)}
+                {lettersArr.map(letter => <> {letter} </>)} 
+                <br/>Guesses Left: {7 - guessesTaken}
             </div>
         );
     }
@@ -117,7 +118,7 @@ function HangmanDisplay({guessesTaken, guessedLetters, hiddenWord}) {
         ______|_______
         | D  E  A  D |`}</pre>;
             default:
-                return <pre style={hangmanStyle}>{`This should not happen! num: `}</pre>
+                return <pre style={hangmanStyle}>{`This should not happen!`}</pre>
         }
     }
 

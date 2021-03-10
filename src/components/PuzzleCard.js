@@ -6,6 +6,11 @@ import HangmanDisplay from './HangmanDisplay';
 //Also NO state is required here, We DO NOT use PuzzleCard to actually play a game, that is SinglePuzzle
 const PuzzleCard = ({ id, hiddenWord, guessesTaken, guessedLetters, selectFunct }) => {
 
+  //Just shut up about unique keys already
+  function getKey(letter){
+    let keyString = id.toString + letter;
+  }
+
   return (
     <div className = 'card pseudo button' onClick={e => selectFunct(id)} >
         <HangmanDisplay guessesTaken={guessesTaken} guessedLetters={guessedLetters} hiddenWord={hiddenWord}/>
@@ -15,7 +20,7 @@ const PuzzleCard = ({ id, hiddenWord, guessesTaken, guessedLetters, selectFunct 
         <h4>Guesses Taken: {guessesTaken}</h4>
         <p>
             Guessed Letters:
-            {guessedLetters.map((letter)=> <React.Fragment key={id.toString+letter}> {letter}  </React.Fragment>)}
+            {guessedLetters.map((letter)=> <React.Fragment key={getKey(letter)}> {letter}  </React.Fragment>)}
         </p>
       </div>
     </div>

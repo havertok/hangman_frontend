@@ -1,93 +1,43 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState}  from 'react';
 import Navbar from './components/Navbar.js';
-import PuzzleGrid from './components/PuzzleGrid.js';
-import { sendGetAllRequest } from './services/httpServ.js';
+import Home from './components/Home.js';
+import Login from './components/Login.js';
+import AddNewPuzz from './components/AddNewPuzz.js'
 import './App.css';
-import SinglePuzzle from './components/SinglePuzzle.js';
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
-function App() {
+function App(){
 
-  const [isLoading, setLoading] = useState(true); //data needs to be fetched before render
-  const [puzzles, setPuzzles] = useState([]);
-  const [navState, setNavState] = useState('Home');//The default landing page is a grid of puzzles (i.e. home)
-  const [selectedPuzzle, setSelectedPuzzle] = useState(null);// no puzzle will have neg ID
+    const [navState, setNavState] = useState('/Home');//The default landing page is a grid of puzzles (i.e. home)
 
-  const testUrl = 'testpuzzles.json';
-  const prodUrl = 'http://localhost:8080/puzzles'
+      //For redirect we MUST use exact path, otherwise nothing loads.
+      const Routes = () => {
+        return (
+            <BrowserRouter>
+                <Navbar navVal = {navState}/>
+                <Switch>
+                    <Route exact path='/'><Redirect to='/Home' /></Route>
+                    <Route path='/Home' component={Home}/>
+                    <Route path='/Login' component={Login}/>
+                    <Route path='/Add' component={AddNewPuzz}/>
+                    <Route component={noRoutePage}/>
+                </Switch>
+            </BrowserRouter>    
+        );
+      };
 
-  const gridContStyle = {paddingLeft: 10, justifyItems: 'center', alignItems: 'center',}
+      return (
+          <div className='App'>
+              <Routes />
+          </div>
+      )
+}
 
-  useEffect(() => {
-    loadPuzzles()
-  }, []);
-
-  //To force a fetch from server
-  function loadPuzzles() {
-    setLoading(true);
-    setTimeout(() => {
-      sendGetAllRequest(prodUrl).then((resp) => {
-        setPuzzles(resp);
-        setLoading(false);
-      })
-    }, 2000); //I just want to display the loading animation for a bit
-  }
-
-  function navClick(value) {
-    setNavState(value); //returns navbuttons values: Home, New, Login
-  };
-
-  //Gets the puzzle id and then uses getPuzz below to set actual puzzle object
-  //IFF VALUE IS -2 ALSO LOADPUZZLES that means we closed MODAL
-  function puzzleIdSelect(value){
-    if(value == -2){
-      loadPuzzles();
-    }
-    getPuzzleFromState(value);
-  };
-
-  //Get's local copy of puzzle object
-  function getPuzzleFromState(value){
-    if(value < 0){
-      setSelectedPuzzle(null);
-      return null;
-    }
-    puzzles.forEach(puzz => {
-      if(puzz.id == value){
-        setSelectedPuzzle(puzz);
-      }
-    });
-  }
-
-  //Update local puzzle object, may just push via rest in SP and then force reload
-  function updatePuzzle(updatedPuzz){
-    puzzles.forEach(puzz => {
-      if(puzz.id == updatedPuzz.id){
-        puzz = updatedPuzz;
-      }
-    });
-  }
-
-  if (isLoading || !puzzles){
+//If no route matches what we have return 404
+function noRoutePage(){
     return (
-      <div>
-        <Navbar buttonFunct={navClick} navVal = {navState}/>
-        <div className='Loading'>
-          <h2>Loading...</h2>
-          <img style={{animation: `load-spin 3s linear infinite`}} src={'Cosmati_Loading_BIG.png'} alt="img"/>
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div>
-      <Navbar buttonFunct={navClick} navVal = {navState}/>
-      <SinglePuzzle selectFunct={puzzleIdSelect} puzzle={selectedPuzzle} postUrl={prodUrl}/>
-      <div className ='flex' style={gridContStyle}>
-        <PuzzleGrid selectFunct={puzzleIdSelect} props={puzzles}/>
-      </div>
-    </div>
-  );
+        <div style={{justifyContent: 'center'}}><h1>4_0_4</h1></div>
+    );
 }
 
 export default App;

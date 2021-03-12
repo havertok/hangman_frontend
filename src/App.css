@@ -22,6 +22,17 @@
 
 .button-bar {
   font-family: 'fatcowboy', monospace;
+  justify-content: center;
+}
+
+.nav-button {
+  max-width:20em;
+  white-space: nowrap;
+  overflow:hidden;
+  background-color: black;
+  color: gold;
+  border-Radius: 10px;
+  margin: 0 1em;
 }
 
 .Loading {
@@ -54,7 +65,7 @@
 
 .modal {
   background-color: #ffffff;
-  border-Radius: 5;
+  border-Radius: 25px;
   max-Width: 800px;
   min-Height: 600px;
   margin: 0 auto;
@@ -84,8 +95,3 @@ img{
   margin: 10px;
 }
 
-button {
-  max-width:20em;
-  white-space:nowrap;
-  overflow:hidden;
-}

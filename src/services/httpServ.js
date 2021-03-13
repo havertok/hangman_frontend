@@ -31,4 +31,18 @@ export const sendPostSinglePuzzle = async (url, puzzle) => {
     .catch(err => console.log('POST ERROR: ' + err))
 };
 
-//Put to add a new puzzle
+//Post to add a new Puzzle, puzzle obj here will NOT include things like ID and isSolved, server needs to do that
+export const sendPostNewPuzzle = async (url, puzzle) => {
+  //things
+}
+
+//TODO: fix up POST with actual user data according to axios method
+export const sendPostNewUser = async (url) => {
+  const prom = await axios.post(url + '/new')
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+}

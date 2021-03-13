@@ -33,11 +33,13 @@ function App(){
       )
 }
 
-//If no route matches what we have return 404
+//If no route matches what we have return 404, not really worth it to put in it's own file
 function noRoutePage(){
     return (
         <div style={{justifyContent: 'center'}}><h1>4_0_4</h1></div>
     );
 }
+
+
 
 export default App;

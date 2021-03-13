@@ -46,3 +46,8 @@ export const sendPostNewUser = async (url) => {
       console.log(error);
     })
 }
+
+//We can hit an external servie to grab the local users IP and set that as context (TODO-ish)
+// .get('https://www.cloudflare.com/cdn-cgi/trace', function(data) {
+//  console.log(data)
+// })

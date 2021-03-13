@@ -7,7 +7,7 @@ function Login(){
     const[token, setToken] = useState(); //We will need to set token via contextAPI
 
     return (
-        <div className='generic-wrapper'v>
+        <div className='generic-wrapper'>
             <h1>LOGIN PAGE</h1>
             <label>
                 <input 

@@ -1,11 +1,15 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import UserContext from '../context/UserContext.js'
 
 function Navbar (props) {
+
+    const context = useContext(UserContext);
 
     return (
         <div className = 'App-Nav'>
             <h1 className = 'App-Title'>H A N G M A N</h1>
+            <h4>Allowed Guesses: {context.allowedGuesses} </h4>
             <div className = 'button-bar flex three'>
                 <Link className='nav-button' to='/Home'>Home</Link>
                 <Link className='nav-button' to='/Login'>Login/Register</Link>

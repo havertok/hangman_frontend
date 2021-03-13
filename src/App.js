@@ -1,10 +1,11 @@
-import React, {useEffect, useState}  from 'react';
+import React, {createContext, useEffect, useState}  from 'react';
 import Navbar from './components/Navbar.js';
 import Home from './components/Home.js';
 import Login from './components/Login.js';
 import AddNewPuzz from './components/AddNewPuzz.js'
 import './App.css';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { UserProvider } from './context/UserContext.js'
 
 function App(){
 
@@ -12,6 +13,7 @@ function App(){
 
       //For redirect we MUST use exact path, otherwise nothing loads.
       const Routes = () => {
+
         return (
             <BrowserRouter>
                 <Navbar navVal = {navState}/>
@@ -27,9 +29,9 @@ function App(){
       };
 
       return (
-          <div className='App'>
+          <UserProvider>
               <Routes />
-          </div>
+          </UserProvider>
       )
 }
 

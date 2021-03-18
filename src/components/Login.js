@@ -1,35 +1,63 @@
-import React, {useState} from 'react';
-import httpServ from '../services/httpServ.js'
+import React, {useEffect, useState} from 'react';
+import useSignUpForm from '../hooks/useSignUpForm.js'
+import { sendPostNewUser } from '../services/httpServ.js';
 
 //If user checks register, then we post to backend and check if username exists already
 function Login(){
+    //Need to intialize function before it can be sent to custom hook
+    const submitForm = () =>{
+        console.log(`User: ${inputs.username} generated!`)
+        let prom = sendPostNewUser(url, inputs);
+        console.log(prom);
+    }
+
     const[register, setRegister] = useState(false);
+    const[userDetails, setUserDetails] = useState();
+    const[url, setUrl] = useState();
     const[token, setToken] = useState(); //We will need to set token via contextAPI
+    //Our custom hook provies state/event handling as well as state maintenence
+    const {inputs, handleInputChange, handleSubmit} = useSignUpForm(submitForm);
+
+    const registrationUrl = 'http://localhost:8080/register';
+    const loginUrl = 'http://localhost:8080/user/login';
+
+    useEffect(() => {
+        setUserDetails({username: '', password: '', email: ''}); //default user is empty
+        setUrl(loginUrl);
+    }, []);
+
+    useEffect(()=>{
+        if(register){
+            setUrl(registrationUrl);
+        } else {
+            setUrl(loginUrl); //we're going to have to map it on the backend anyway
+        }
+    }, [register]);
 
     return (
         <div className='generic-wrapper'>
             <h1>LOGIN PAGE</h1>
             <label>
-                <input 
-                    type='checkbox'
-                    name='registerCheck'
-                    checked={register}
-                    onChange={e => setRegister(!register)}/>
-                    <span className='checkable'>Register?</span>
-            </label>
-            <form style={{maxWidth: '30em'}}>
-                <label>
-                    <span>Username:</span>
-                    <input type='text'/>
-                </label>
-                <label>
-                    <span>Password</span>
-                    <input type='password'/>
-                </label>
-                <label>
-                    <span>Email</span>
-                    <input type='email'/>
-                </label>
+            <input 
+                type='checkbox'
+                name='registerCheck'
+                checked={register}
+                onChange={e => setRegister(!register)}/>
+                <span className='checkable'>Register?</span></label>
+            <form onSubmit={handleSubmit}>
+                <label>Username</label>
+                <input type='text' name='username' onChange={handleInputChange} value={inputs.username}></input>
+                <label>Password</label>
+                <input type='password' name='password' onChange={handleInputChange} value={inputs.password}></input>
+                {register == true &&
+                    <div>
+                        <label>Re-enter Password</label>
+                        <input type='password' name='matchingPassword' onChange={handleInputChange} value={inputs.matchingPassword}></input>
+                        <label>Email</label>
+                        <input type='text' name='email' onChange={handleInputChange} value={inputs.email}></input>
+                    </div>
+                }
+                <button type='submit'>Submit</button>
             </form>
         </div>
     );

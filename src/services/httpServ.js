@@ -26,7 +26,7 @@ export const sendPostSinglePuzzle = async (url, puzzle) => {
     headers :{ 'Content-Type': 'application/json' },
     body: JSON.stringify(puzzle)
   };
-  fetch(url + '/modifyOne', requestOptions)
+  fetch(url + '/modify', requestOptions)
     .then(resp => console.log('SENT POST; Response: ' + resp))
     .catch(err => console.log('POST ERROR: ' + err))
 };
@@ -36,9 +36,15 @@ export const sendPostNewPuzzle = async (url, puzzle) => {
   //things
 }
 
-//TODO: fix up POST with actual user data according to axios method
-export const sendPostNewUser = async (url) => {
-  const prom = await axios.post(url + '/new')
+//userObj will map to our UserModelDTO in the backend {username:, password:, matchingPassword:, email:}
+export const sendPostNewUser = async (url, userObj) => {
+  // let config = {
+  //   headers:{
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': '*'
+  //   }
+  // }
+  const prom = await axios.post(url, userObj)
     .then((response) => {
       return response;
     })

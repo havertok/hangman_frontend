@@ -1,13 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import useSignUpForm from '../hooks/useSignUpForm.js'
-import { sendPostNewUser } from '../services/httpServ.js';
+import { sendPostLogin, sendPostNewUser } from '../services/httpServ.js';
 
 //If user checks register, then we post to backend and check if username exists already
 function Login(){
     //Need to intialize function before it can be sent to custom hook
     const submitForm = () =>{
         console.log(`User: ${inputs.username} generated!`)
-        let prom = sendPostNewUser(url, inputs);
+        let prom;
+        if(register) {
+            prom = sendPostNewUser(url, inputs);
+        } else {
+            prom = sendPostLogin(url, inputs);
+        }
         console.log(prom);
     }
 
@@ -19,7 +24,7 @@ function Login(){
     const {inputs, handleInputChange, handleSubmit} = useSignUpForm(submitForm);
 
     const registrationUrl = 'http://localhost:8080/register';
-    const loginUrl = 'http://localhost:8080/user/login';
+    const loginUrl = 'http://localhost:8080/authenticate'; //New controller (JwtAuthenticationController) for java web tokens
 
     useEffect(() => {
         setUserDetails({username: '', password: '', email: ''}); //default user is empty

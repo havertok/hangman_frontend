@@ -1,4 +1,5 @@
 import axios from "axios";
+import Interceptors from './interceptors/Interceptors.js';
 
 //I will also need a get for a single puzzle by ID, and a post to inform server that a puzzle
 //has been lost (8 guesses means man has been hanged and the puzzle is ded) or solved
@@ -38,14 +39,26 @@ export const sendPostNewPuzzle = async (url, puzzle) => {
 
 //userObj will map to our UserModelDTO in the backend {username:, password:, matchingPassword:, email:}
 export const sendPostNewUser = async (url, userObj) => {
-  // let config = {
-  //   headers:{
-  //     'Content-Type': 'application/json',
-  //     'Access-Control-Allow-Origin': '*'
-  //   }
-  // }
   const prom = await axios.post(url, userObj)
     .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+}
+
+//We do a few things when logging in that we don't when registering
+export const sendPostLogin = async (url, userObj) => {
+  let config = {
+    headers:{
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+  }
+  const prom = await axios.post(url, userObj, config)
+    .then((response) => {
+      localStorage.setItem("authorization", response.data.token);
       return response;
     })
     .catch((error) => {

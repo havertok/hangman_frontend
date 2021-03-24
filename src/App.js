@@ -6,6 +6,7 @@ import AddNewPuzz from './components/AddNewPuzz.js'
 import './App.css';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { UserProvider } from './context/UserContext.js'
+import Interceptors from './interceptors/Interceptors.js';
 
 function App(){
 

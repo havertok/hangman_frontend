@@ -11,7 +11,6 @@ import Interceptors from './interceptors/Interceptors.js';
 function App(){
 
     const [navState, setNavState] = useState('/Home');//The default landing page is a grid of puzzles (i.e. home)
-
       //For redirect we MUST use exact path, otherwise nothing loads.
       const Routes = () => {
 

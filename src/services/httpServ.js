@@ -1,4 +1,5 @@
 import axios from "axios";
+import Interceptors from '../interceptors/Interceptors.js';
 
 //I will also need a get for a single puzzle by ID, and a post to inform server that a puzzle
 //has been lost (8 guesses means man has been hanged and the puzzle is ded) or solved
@@ -48,6 +49,7 @@ export const sendPostNewUser = async (url, userObj) => {
 }
 
 //We do a few things when logging in that we don't when registering
+//Should return/call a function to rest user to /Home after login
 export const sendPostLogin = async (url, userObj) => {
   // let config = {
   //   headers:{
@@ -57,7 +59,7 @@ export const sendPostLogin = async (url, userObj) => {
   // }
   const prom = await axios.post(url, userObj)
     .then((response) => {
-      localStorage.setItem("authorization", response.data.token);
+      localStorage.setItem('authorization', response.data.token);
       return response;
     })
     .catch((error) => {

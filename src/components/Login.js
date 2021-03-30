@@ -4,6 +4,7 @@ import { sendPostLogin, sendPostNewUser } from '../services/httpServ.js';
 
 //If user checks register, then we post to backend and check if username exists already
 function Login(){
+
     //Need to intialize function before it can be sent to custom hook
     const submitForm = () =>{
         console.log(`User: ${inputs.username} generated!`)

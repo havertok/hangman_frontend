@@ -13,8 +13,8 @@ function Login(){
             prom = sendPostNewUser(url, inputs);
         } else {
             prom = sendPostLogin(url, inputs);
+            
         }
-        console.log(prom);
     }
 
     const[register, setRegister] = useState(false);

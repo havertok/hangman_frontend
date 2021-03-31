@@ -9,7 +9,6 @@ axios.interceptors.request.use(
             console.log('TOKEN: ' +jwtToken);
             config.headers['authorization'] = 'Bearer ' + jwtToken;
         }
-        config.headers['authorization'] = 'Bearer ' + 'NULL';
         config.headers['Content-Type'] = 'application/json';
         console.log(config);
         return config;

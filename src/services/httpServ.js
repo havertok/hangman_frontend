@@ -15,7 +15,7 @@ export const sendGetAllRequest = async (url) => {
       console.log(error.message);
     })
     .finally(() => {
-      console.log("sendAllGet Done");
+      //console.log("sendAllGet Done");
     });
   return prom;
 };
@@ -63,6 +63,19 @@ export const sendPostLogin = async (url, userObj) => {
       return response;
     })
     .catch((error) => {
+      console.log(error);
+    })
+}
+
+//Add new page should return unauhtorized from server, page will print that.
+export const testAuthGet = async (url) => {
+  const prom = await axios.get(url)
+    .then((response) => {
+      console.log(response);
+      return response;
+    })
+    .catch((error) => {
+      //Change to check type of error, we want to return a 403 error.
       console.log(error);
     })
 }

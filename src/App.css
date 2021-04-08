@@ -25,6 +25,11 @@
   justify-content: center;
 }
 
+.button-div {
+    display: flex;
+    justify-content: space-between;
+}
+
 .nav-button {
   max-width:20em;
   white-space: nowrap;

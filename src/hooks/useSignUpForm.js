@@ -1,6 +1,7 @@
 import {useState} from 'react';
 
 //Saw an article using a custom hook to handle a form, thought I'd try it out
+//NB: This is generic enough that I should be able to use it to add new puzzles, do I leave the name?
 const useSignUpForm = (callback) => {
     const [inputs, setInputs] = useState({});//empty object
 

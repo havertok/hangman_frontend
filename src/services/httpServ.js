@@ -78,6 +78,7 @@ export const testAuthGet = async (url) => {
       //Change to check type of error, we want to return a 403 error.
       console.log(error);
     })
+    return prom;
 }
 
 //We can hit an external servie to grab the local users IP and set that as context (TODO-ish)

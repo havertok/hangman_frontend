@@ -12,6 +12,11 @@ function Registration({handleRegistrationClose}){
     const {inputs, handleInputChange, handleSubmit} = useSignUpForm(submitForm);
     const registrationUrl = 'http://localhost:8080/register';
 
+    function handleOnSubmit(){ //want to close modal after submit (using the form hook means this needs something I don't know yet)
+        handleSubmit();
+        handleClose();
+    }
+
     function handleClose(){
         handleRegistrationClose();
     }

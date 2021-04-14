@@ -12,7 +12,7 @@ function AddNewPuzz(){
     function testAuth(){
         setLoading(true);
         setTimeout(() => {
-          testAuthGet('http://localhost:8080/testAuth').then((resp) => {
+          testAuthGet('http://localhost:8080/puzzles/testAuth').then((resp) => {
             setResponse(resp);
             setLoading(false);
           })
@@ -32,7 +32,7 @@ function AddNewPuzz(){
     return (
         <div>
             <h1>ADD PUZZLE PAGE</h1>
-            {console.log(response)}
+            {(response.data)}
         </div>
     );
 }

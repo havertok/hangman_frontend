@@ -1,7 +1,7 @@
 //Axios can intercept all our request and append jwt headers automatically
 var axios = require('axios');
 
-export const jwtToken = localStorage.getItem('authorization');
+let jwtToken = localStorage.getItem('authorization');
 
 axios.interceptors.request.use(
     function (config) {

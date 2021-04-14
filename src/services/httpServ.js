@@ -60,6 +60,7 @@ export const sendPostLogin = async (url, userObj) => {
   const prom = await axios.post(url, userObj)
     .then((response) => {
       localStorage.setItem('authorization', response.data.token);
+      localStorage.setItem('isLoggedIn', true);//We use this to conditionally display logout button
       return response;
     })
     .catch((error) => {

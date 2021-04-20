@@ -13,16 +13,9 @@ function Login(){
     }
 
     const[register, setRegister] = useState(false);
-    const[userDetails, setUserDetails] = useState();
-    const[token, setToken] = useState();
     //Our custom hook provies state/event handling as well as state maintenence
     const {inputs, handleInputChange, handleSubmit} = useSignUpForm(submitForm);
-
     const loginUrl = 'http://localhost:8080/authenticate'; //New controller (JwtAuthenticationController) for java web tokens
-
-    useEffect(() => {
-        setUserDetails({username: '', password: '', email: ''}); //default user is empty
-    }, []);
 
     function handleRegisterButton(){
         setRegister(true)

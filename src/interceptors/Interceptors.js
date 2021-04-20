@@ -6,11 +6,11 @@ let jwtToken = localStorage.getItem('authorization');
 axios.interceptors.request.use(
     function (config) {
         if (jwtToken) {
-            console.log('TOKEN: ' +jwtToken);
+            //console.log('TOKEN: ' +jwtToken);
             config.headers['authorization'] = 'Bearer ' + jwtToken;
         }
         config.headers['Content-Type'] = 'application/json';
-        console.log(config);
+        //console.log(config);
         return config;
     },
     function (err) {
